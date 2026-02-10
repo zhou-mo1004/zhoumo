@@ -1,178 +1,161 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的世界</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-        body {
-            background-color: #f0f0f0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        /* 导航栏 */
-        .navbar {
-            background-color: #ffffff;
-            border-radius: 20px;
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-            border: 2px solid #000000;
-        }
-        .nav-links {
-            display: flex;
-            gap: 12px;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #333333;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-        .nav-links a.active {
-            background-color: #000000;
-            color: #ffffff;
-        }
-        .nav-links a:hover {
-            background-color: #eeeeee;
-        }
-        .mail-icon {
-            width: 20px;
-            height: 20px;
-        }
-        /* 主内容区 */
-        .main-content {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-        }
-        .text-section {
-            flex: 1;
-        }
-        .title {
-            font-size: 48px;
-            font-weight: 900;
-            color: #000000;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-        .highlight-pink {
-            background-color: #ff6699;
-            color: #ffffff;
-            padding: 2px 8px;
-            display: inline-block;
-            transform: skewX(-8deg);
-            border: 2px solid #000000;
-        }
-        .highlight-blue {
-            background-color: #3399ff;
-            color: #ffffff;
-            padding: 2px 8px;
-            display: inline-block;
-            transform: skewX(-8deg);
-            border: 2px solid #000000;
-        }
-        .subtitle {
-            font-size: 16px;
-            color: #333333;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        .btn {
-            background-color: #000000;
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 0 #666666;
-        }
-        .btn:hover {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 #666666;
-        }
-        /* 头像卡片 */
-        .avatar-card {
-            width: 320px;
-            background-color: #ffffff;
-            border-radius: 20px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 3px solid #000000;
-        }
-        .avatar-img {
-            width: 100%;
-            border-radius: 12px;
-            display: block;
-        }
-        /* 响应式适配 */
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-            .avatar-card {
-                width: 100%;
-            }
-            .title {
-                font-size: 32px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- 导航栏（可跳转） -->
-        <nav class="navbar">
-            <div class="nav-links">
-              <a href=index.html" 
-                  class="active">首页</a>
-                <a href="about.html">关于我</a>
-                <a href="projects.html">项目</a>
-                <a href="product.html">产品</a>
-            </div>
-            <svg class="mail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-        </nav>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>周末的个人主页</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  body {
+    background: #f0f0f0;
+    padding: 20px;
+    /* 这里我保证：没有禁止滚动！ */
+  }
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
 
-        <!-- 主内容 -->
-        <div class="main-content">
-            <div class="text-section">
-                <h1 class="title">我是<br><span class="highlight-pink">周末</span>,<br>A student,<br>练习时长 <span class="highlight-blue">两年半</span></h1>
-                <p class="subtitle"> Food Lover | Travel Enthusiast | Animal Lover | Learning Product | Operations | Programming | AI | Database ¯\_(ツ)_/¯<br>A PASSIONATE FOOOOL !!!</p >
-                <a href="about.html" class="btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    More about me
-                </a >
-            </div>
-            <div class="avatar-card">
-                < img src="https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/36a1c7b81d9f41589f0a7c3d8818d180.png~tplv-a9rns2rl98-image.png?rk3s=18ea6f23&x-expires=1740478808&x-signature=K%2F%2FZJ%2FZJ%2FZJ%2FZJ%2FZJ%2FZJ%2FZJ%2FZJ%2FZJ%3D" alt="卡通头像" class="avatar-img">
-            </div>
-        </div>
+  /* 导航 */
+  .navbar {
+    background: #fff;
+    border-radius: 20px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    border: 2px solid #000;
+  }
+  .nav-links {
+    display: flex;
+    gap: 12px;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  .nav-links a.active {
+    background: #000;
+    color: #fff;
+  }
+
+  /* 主体内容 */
+  .main-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-bottom: 100px; /* 留出底部空间，让你能滑到底 */
+  }
+  .text-section {
+    flex: 1;
+  }
+  .title {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .highlight-pink {
+    background: #ff6699;
+    color: #fff;
+    padding: 2px 8px;
+    display: inline-block;
+    transform: skewX(-8deg);
+    border: 2px solid #000;
+  }
+  .highlight-blue {
+    background: #3399ff;
+    color: #fff;
+    padding: 2px 8px;
+    display: inline-block;
+    transform: skewX(-8deg);
+    border: 2px solid #000;
+  }
+  .subtitle {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+
+  /* 头像 */
+  .avatar-card {
+    width: 320px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 3px solid #000;
+  }
+  .avatar-img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+  }
+
+  /* 下面我故意加一段内容，让你能滑！ */
+  .extra-section {
+    margin-top: 60px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 20px;
+    border: 2px solid #000;
+  }
+  .extra-section h2 {
+    margin-bottom: 15px;
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="navbar">
+    <div class="nav-links">
+      <a href="index.html"
+          class="active">首页</a>
+    
+      <a href="about.html">关于我</a>
+      <a href="projects.html">项目</a>
+      <a href="product.html">产品</a>
     </div>
+  </div>
+
+  <div class="main-content">
+    <div class="text-section">
+      <h1 class="title">
+        我是<br>
+        <span class="highlight-pink">周末</span>,<br>
+        A student,<br>
+        练习时长 <span class="highlight-blue">两年半</span>
+      </h1>
+      <p class="subtitle">
+        Food Lover | Travel Enthusiast | Animal Lover | Product | Operations | Programming | AI | Database
+      </p >
+    </div>
+
+    <div class="avatar-card">
+      < img src="https://p26-passport.byteacctimg.com/tos-cn-avt0/5c362228064243449f8b988999999999~c5_300x300.jpeg" 
+           alt="你的头像" class="avatar-img">
+    </div>
+  </div>
+
+  <!-- 这段是为了让你能往下滑 -->
+  <div class="extra-section">
+    <h2>关于我</h2>
+    <p>热爱产品、运营、编程、AI、数据库。</p >
+    <p>喜欢美食、旅游、小动物，持续学习中～</p >
+  </div>
+</div>
 </body>
 </html>
-
