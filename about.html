@@ -1,110 +1,566 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我 | 我的个人世界</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-        }
-        body {
-            background-color: #f8f8f8;
-            color: #222;
-            line-height: 1.6;
-        }
-        .navbar {
-            background: #fff;
-            border: 3px solid #000;
-            border-radius: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 20px;
-            margin: 20px auto;
-            max-width: 800px;
-        }
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #222;
-            font-weight: 600;
-            padding: 4px 8px;
-            border: 2px solid transparent;
-        }
-        .nav-links a.active {
-            background: #000;
-            color: #fff;
-            border-radius: 6px;
-        }
-        .mail-icon {
-            font-size: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .page-title {
-            font-size: 32px;
-            font-weight: 800;
-            margin: 30px 0;
-            text-align: center;
-        }
-        .about-content {
-            background: #fff;
-            border: 3px solid #000;
-            border-radius: 12px;
-            padding: 20px;
-        }
-        .about-section {
-            margin-bottom: 20px;
-        }
-        .about-section h3 {
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我 - 我的个人网站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    body {
+      background: #fef9f3;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* 导航栏 */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #000;
+      z-index: 999;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 6px 12px;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .nav-links a.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      border-color: #000;
+      border-radius: 4px;
+    }
+
+    /* 页面容器 */
+    .container {
+      max-width: 1200px;
+      margin: 80px auto 0;
+      padding: 0 20px;
+    }
+
+    /* 个人简介区 */
+    .intro-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 40px 0;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .intro-text {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+
+    .intro-text h1 {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: inline-block;
+      padding: 8px 16px;
+      background: #4a8eff;
+      color: #fff;
+      border: 2px solid #000;
+      text-shadow: 2px 2px 0 #000;
+    }
+
+    .intro-text p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    /* 名片样式 */
+    .card {
+      width: 320px;
+      background: #fff;
+      border: 3px solid #000;
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      box-shadow: 8px 8px 0 #000;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-header {
+      background: #4ade80;
+      color: #000;
+      font-weight: bold;
+      padding: 8px;
+      border: 2px solid #000;
+      margin-bottom: 16px;
+    }
+
+    .card-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .card-avatar {
+      width: 80px;
+      height: 80px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .card-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-info-block {
+      flex: 1;
+      border: 2px solid #000;
+      padding: 8px;
+      background: #fef08a;
+    }
+
+    .card-info-block.major {
+      background: #93c5fd;
+    }
+
+    .card-info-block.job {
+      background: #fda4af;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .card-id {
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .card-barcode {
+      width: 120px;
+      height: 30px;
+      background: repeating-linear-gradient(
+        90deg,
+        #000,
+        #000 2px,
+        transparent 2px,
+        transparent 6px
+      );
+    }
+
+    .card-vibe {
+      width: 50px;
+      height: 50px;
+      background: #22c55e;
+      border: 2px solid #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* 励志文案滚动横幅 */
+    .motivation-banner {
+      width: 100%;
+      background: #fef08a; /* 黄色打底 */
+      border: 3px solid #000; /* 黑色边框 */
+      overflow: hidden;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .banner-content {
+      display: flex;
+      white-space: nowrap;
+      animation: scroll 20s linear infinite;
+    }
+
+    .banner-content span {
+      font-size: 20px;
+      font-weight: bold;
+      color: #000;
+      padding: 12px 40px;
+      display: inline-block;
+    }
+
+    /* 滚动动画 */
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* 地球Online区 */
+    .earth-section {
+      padding: 60px 0;
+    }
+
+    .earth-title {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .earth-title span {
+      background: #f472b6;
+      color: #000;
+      padding: 8px 16px;
+      border: 2px solid #000;
+      transform: rotate(-2deg);
+    }
+
+    /* 时间线 */
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: #000;
+      border-style: dashed;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border: 3px solid #000;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .timeline-content {
+      width: 45%;
+      background: #fff;
+      border: 3px solid #000;
+      padding: 16px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: auto;
+      border-color: #2563eb;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-right: auto;
+      border-color: #22c55e;
+    }
+
+    .timeline-content h4 {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .timeline-content h4 span {
+      background: #fef3c7;
+      padding: 2px 6px;
+      border: 1px solid #000;
+      font-size: 12px;
+    }
+
+    .timeline-content p {
+      font-size: 15px;
+    }
+
+    .timeline-label {
+      position: absolute;
+      top: -30px;
+      background: #fff;
+      border: 2px solid #000;
+      padding: 4px 12px;
+      font-weight: bold;
+    }
+
+    .timeline-item.main .timeline-label {
+      left: 0;
+      border-color: #2563eb;
+    }
+
+    .timeline-item.side .timeline-label {
+      right: 0;
+      border-color: #22c55e;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-dot {
+        left: 20px;
+      }
+
+      .timeline-content {
+        width: calc(100% - 50px);
+        margin-left: 50px !important;
+        margin-right: 0 !important;
+      }
+
+      .timeline-label {
+        position: static;
+        display: inline-block;
+        margin-bottom: 8px;
+      }
+
+      .banner-content span {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="nav-links">
-            <a href="index.html">首页</a>
-            <a href="about.html">关于我</a>
-            <a href="projects.html">项目</a>
-            <a href="products.html">产品</a>
-            
+  <!-- 导航栏 -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">我的个人网站</div>
+      <div class="nav-links">
+       <a href="index.html"> 首页</a>
+       <a href="about.html"> 关于我</a>
+        <a href="projects.html">项目</a>
         
-        
+       <a href="product.html"> 产品</a>
+          <a href="contant.html">联系我</a>
+        ✉️
+      </div>
+    </div>
+  </nav>
+
+  <!-- 内容容器 -->
+  <div class="container">
+    <!-- 个人简介区 -->
+    <section class="intro-section" id="about">
+      <div class="intro-text">
+        <h1>欢迎来到我的个人世界！</h1>
+        <p>我出生于2005年10月，在陕西的一个小地方长大。</p >
+        <p>家庭环境比较自由，家人都不会对我的选择做过多干涉。这导致我在肆意生长的过程中，拥有了很多复杂的成分。Anyway，欢迎来到我的世界！</p >
+        <p>我是一个高精力，对出去游山玩水感兴趣，精力异常旺盛，脑子里idea疯狂溢出。现实中选择性社恐，在网络上结交了一群素未谋面的电子好友！</p >
+        <p>目前在是会计专业在读学生，除本专业之外对其他方向涉猎广泛，热衷于在实践中体验学习。</p >
+      </div>
+
+      <div class="card">
+        <div class="card-header">ID CARD | Fuzhou University of International Studies and Trade</div>
+        <div class="card-row">
+          <div class="card-avatar">
+            < img src="avatar.png" alt="头像">
+          </div>
+          <div class="card-info-block">
+            <strong>NAME</strong><br>
+            周末
+          </div>
         </div>
-        <div class="mail-icon">✉️</div>
+        <div class="card-info-block major">
+          <strong>MAJOR</strong><br>
+          会计专业
+        </div>
+        <div class="card-info-block job">
+          <strong>JOB</strong><br>
+          学生
+        </div>
+        <div class="card-footer">
+          <div>
+            <div class="card-id">XM-20051004-OVO</div>
+            <div class="card-barcode"></div>
+          </div>
+          <div class="card-vibe">OFFICIAL<br>VIBE</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 励志文案滚动横幅 -->
+    <div class="motivation-banner">
+      <div class="banner-content">
+        <span>保持热爱，奔赴山海</span>
+        <span>持续学习，终身成长</span>
+        <span>行动是治愈恐惧的良药</span>
+        <span>越努力，越幸运</span>
+        <span>自律给我自由</span>
+        <span>未来可期，全力以赴</span>
+        <!-- 复制一份文案实现无缝滚动 -->
+        <span>保持热爱，奔赴山海</span>
+        <span>持续学习，终身成长</span>
+        <span>行动是治愈恐惧的良药</span>
+        <span>越努力，越幸运</span>
+        <span>自律给我自由</span>
+        <span>未来可期，全力以赴</span>
+      </div>
     </div>
 
-    <div class="container">
-        <h2 class="page-title">关于我</h2>
-        <div class="about-content">
-            <div class="about-section">
-                <h3>📚 教育背景</h3>
-                <p>XX大学 会计专业 在读</p >
-            </div>
-            <div class="about-section">
-                <h3>💻 技能方向</h3>
-                <p>MySQL数据库、后端开发、网页设计，产品运营</p >
-            </div>
-            <div class="about-section">
-                <h3>🎨 兴趣爱好</h3>
-                <p>编程、理财、滑雪、网球教练兼职</p >
-            </div>
+    <!-- 地球Online时间线 -->
+    <section class="earth-section">
+      <h2 class="earth-title">
+        地球Online
+        <span>开放游戏进度</span>
+      </h2>
+
+      <div class="timeline">
+        <!-- 主线任务1 -->
+        <div class="timeline-item main">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">主线任务</div>
+          <div class="timeline-content">
+            <h4>2024.09 <span>[主线]</span></h4>
+            <p>大学生，财务RPA </p >
+          </div>
         </div>
-    </div>
+
+        <!-- 支线任务1 -->
+        <div class="timeline-item side">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">支线任务</div>
+          <div class="timeline-content">
+            <h4>2026.02 <span>[支线]</span></h4>
+            <p>激动地开始AI编程，上线了我的个人网站</p >
+          </div>
+        </div>
+
+        <!-- 主线任务2 -->
+        <div class="timeline-item main">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">主线任务</div>
+          <div class="timeline-content">
+            <h4>2025.06 <span>[主线]</span></h4>
+            <p>完成专业相关证书考试，顺利通过。</p >
+          </div>
+        </div>
+
+        <!-- 支线任务2 -->
+        <div class="timeline-item side">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">支线任务</div>
+          <div class="timeline-content">
+            <h4>2025.04 <span>[支线]</span></h4>
+            <p>开通基金账户，一根绿油油的小韭菜诞生！</p >
+          </div>
+        </div>
+
+        <!-- 主线任务3 -->
+        <div class="timeline-item main">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">主线任务</div>
+          <div class="timeline-content">
+            <h4>2025.11 <span>[主线]</span></h4>
+            <p>确定未来就业方向，针对性学习各项技能，计划跨专业实习。</p >
+          </div>
+        </div>
+
+        <!-- 支线任务3 -->
+        <div class="timeline-item side">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">支线任务</div>
+          <div class="timeline-content">
+            <h4>2025.10 <span>[支线]</span></h4>
+            <p>成功获得新身份-网球教练 ovo 持续学习中</p >
+          </div>
+        </div>
+
+        <!-- 支线任务4 -->
+        <div class="timeline-item side">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">支线任务</div>
+          <div class="timeline-content">
+            <h4>2026.01 <span>[支线]</span></h4>
+            <p>滑雪成功入门，期待成为滑雪高手>_< </p >
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // 滚动动画效果
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.timeline-item').forEach(item => {
+      observer.observe(item);
+    });
+  </script>
 </body>
-
 </html>
