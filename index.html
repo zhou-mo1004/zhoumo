@@ -1,161 +1,350 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>周末的个人主页</title>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  body {
-    background: #f0f0f0;
-    padding: 20px;
-    /* 这里我保证：没有禁止滚动！ */
-  }
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的个人网站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: "Microsoft YaHei", sans-serif;
+    }
 
-  /* 导航 */
-  .navbar {
-    background: #fff;
-    border-radius: 20px;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    margin-bottom: 40px;
-    border: 2px solid #000;
-  }
-  .nav-links {
-    display: flex;
-    gap: 12px;
-  }
-  .nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 8px;
-  }
-  .nav-links a.active {
-    background: #000;
-    color: #fff;
-  }
+    body {
+      background: #fef9f3; /* 暖米色背景，贴近卡通图的柔和感 */
+      color: #333;
+    }
 
-  /* 主体内容 */
-  .main-content {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-    margin-bottom: 100px; /* 留出底部空间，让你能滑到底 */
-  }
-  .text-section {
-    flex: 1;
-  }
-  .title {
-    font-size: 48px;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 20px;
-  }
-  .highlight-pink {
-    background: #ff6699;
-    color: #fff;
-    padding: 2px 8px;
-    display: inline-block;
-    transform: skewX(-8deg);
-    border: 2px solid #000;
-  }
-  .highlight-blue {
-    background: #3399ff;
-    color: #fff;
-    padding: 2px 8px;
-    display: inline-block;
-    transform: skewX(-8deg);
-    border: 2px solid #000;
-  }
-  .subtitle {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 30px;
-    line-height: 1.5;
-  }
+    /* 导航栏 */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      z-index: 999;
+    }
 
-  /* 头像 */
-  .avatar-card {
-    width: 320px;
-    background: #fff;
-    border-radius: 20px;
-    padding: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border: 3px solid #000;
-  }
-  .avatar-img {
-    width: 100%;
-    border-radius: 12px;
-    display: block;
-  }
+    .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
 
-  /* 下面我故意加一段内容，让你能滑！ */
-  .extra-section {
-    margin-top: 60px;
-    padding: 30px;
-    background: #fff;
-    border-radius: 20px;
-    border: 2px solid #000;
-  }
-  .extra-section h2 {
-    margin-bottom: 15px;
-  }
-</style>
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #2d3748;
+    }
+
+    .nav-links a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #4a5568;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ff8da1; /* 卡通图中腮红的粉色作为hover色 */
+    }
+
+    /* 页面容器 */
+    .section {
+      min-height: 100vh;
+      padding: 100px 20px;
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* 首页 */
+    #home {
+      text-align: center;
+    }
+
+    #home h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: #2d3748;
+      /* 卡通风格描边文字效果 */
+      text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+      -webkit-text-stroke: 1px #000;
+      color: #fef9f3;
+    }
+
+    #home p {
+      font-size: 18px;
+      color: #718096;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #ff8da1; /* 卡通图腮红粉色 */
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: 0.3s;
+      border: 2px solid #000; /* 卡通描边 */
+    }
+
+    .btn:hover {
+      background: #ff6b8b;
+    }
+
+    /* 关于我 */
+    h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #2d3748;
+      position: relative;
+      /* 卡通风格描边文字效果 */
+      text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+      -webkit-text-stroke: 1px #000;
+      color: #fef9f3;
+    }
+
+    h2::after {
+      content: "";
+      width: 60px;
+      height: 4px;
+      background: #ff8da1;
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      border-radius: 2px;
+    }
+
+    .about-text {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #4a5568;
+      margin-top: 20px;
+    }
+
+    /* 技能 */
+    .skill-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .skill-card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      border: 2px solid #000; /* 卡通描边 */
+    }
+
+    .skill-card h3 {
+      margin-bottom: 10px;
+      color: #2d3748;
+    }
+
+    .skill-card p {
+      color: #718096;
+      line-height: 1.6;
+    }
+
+    /* 作品 */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .work-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      transition: 0.3s;
+      border: 2px solid #000; /* 卡通描边 */
+    }
+
+    .work-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .work-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #e2e8f0;
+    }
+
+    .work-info {
+      padding: 20px;
+    }
+
+    .work-info h3 {
+      margin-bottom: 8px;
+      color: #2d3748;
+    }
+
+    .work-info p {
+      color: #718096;
+      font-size: 15px;
+    }
+
+    /* 联系 */
+    .contact-box {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      border: 2px solid #000; /* 卡通描边 */
+    }
+
+    .contact-item {
+      margin-bottom: 20px;
+      font-size: 17px;
+      color: #4a5568;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+      .nav-links a {
+        margin-left: 15px;
+        font-size: 15px;
+      }
+
+      #home h1 {
+        font-size: 32px;
+      }
+
+      .section {
+        padding: 80px 15px;
+      }
+
+      h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
-  <div class="navbar">
-    <div class="nav-links">
-      <a href="index.html"
-          class="active">首页</a>
-    
-      <a href="about.html">关于我</a>
-      <a href="projects.html">项目</a>
-      <a href="product.html">产品</a>
-    </div>
-  </div>
 
-  <div class="main-content">
-    <div class="text-section">
-      <h1 class="title">
-        我是<br>
-        <span class="highlight-pink">周末</span>,<br>
-        A student,<br>
-        练习时长 <span class="highlight-blue">两年半</span>
-      </h1>
-      <p class="subtitle">
-        Food Lover | Travel Enthusiast | Animal Lover | Product | Operations | Programming | AI | Database
-      </p >
+  <!-- 导航 -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">我的个人网站</div>
+      <div class="nav-links">
+       <a href="index.html"
+        class="active">首页</a>
+        <a href="about.html">关于我</a>
+        <a href="projects.html">项目</a>
+        <a href="product.html">产品</a>
+        联系我
+      </div>
     </div>
+  </nav>
 
-    <div class="avatar-card">
-      < img src="https://p26-passport.byteacctimg.com/tos-cn-avt0/5c362228064243449f8b988999999999~c5_300x300.jpeg" 
-           alt="你的头像" class="avatar-img">
-    </div>
-  </div>
+  <!-- 首页 -->
+  <section class="section" id="home">
+    <h1>你好，我是个人开发者</h1>
+    <p>专注设计与产品内容创作，用代码与创意打造优质体验。</p >
+    联系我
+  </section>
 
-  <!-- 这段是为了让你能往下滑 -->
-  <div class="extra-section">
+  <!-- 关于我 -->
+  <section class="section" id="about">
     <h2>关于我</h2>
-    <p>热爱产品、运营、编程、AI、数据库。</p >
-    <p>喜欢美食、旅游、小动物，持续学习中～</p >
-  </div>
-</div>
+    <div class="about-text">
+      <p>热爱技术、喜欢设计、坚持学习与创作。熟悉产品运营、数据库、设计等相关技能。</p >
+      <br>
+      <p>性格认真负责，注重细节，追求简洁、好用、美观的作品。不断提升自己，持续进步。</p >
+    </div>
+  </section>
+
+  <!-- 项目 -->
+  <section class="section" id="skill">
+    <h2>我的技能</h2>
+    <div class="skill-box">
+      <div class="skill-card">
+        <h3>网页开发</h3>
+        <p>HTML / CSS / JavaScript / 响应式布局</p >
+      </div>
+      <div class="skill-card">
+        <h3>后端基础</h3>
+        <p>MySQL / 数据库基础 / </p >
+      </div>
+      <div class="skill-card">
+        <h3>设计软件</h3>
+        <p>PS / PR / 基础UI设计与视频剪辑</p >
+      </div>
+      <div class="skill-card">
+        <h3>其他能力</h3>
+        <p>英语、产品运营，财务实操，erp策略</p >
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品 -->
+  <section class="section" id="work">
+    <h2>我的作品</h2>
+    <div class="work-grid">
+      <div class="work-card">
+        < img src="" alt="作品1">
+        <div class="work-info">
+          <h3>个人博客系统</h3>
+          <p>完整前端+后台，支持文章发布与管理</p >
+        </div>
+      </div>
+      <div class="work-card">
+        < img src="" alt="作品2">
+        <div class="work-info">
+          <h3>响应式网站</h3>
+          <p>适配手机、电脑、平板的多端网站</p >
+        </div>
+      </div>
+      <div class="work-card">
+        < img src="" alt="作品3">
+        <div class="work-info">
+          <h3>小工具集合</h3>
+          <p>实用在线工具，简洁高效</p >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section class="section" id="contact">
+    <h2>联系我</h2>
+    <div class="contact-box">
+      <div class="contact-item">📩 邮箱：1574226943@qq.com</div>
+      <div class="contact-item">📱 微信：wssghhh1004</div>
+      <div class="contact-item">📍 所在地：中国</div>
+    </div>
+  </section>
+
+  <script>
+    // 页面滚动流畅（已在CSS开启：scroll-behavior: smooth）
+  </script>
+
 </body>
 </html>
