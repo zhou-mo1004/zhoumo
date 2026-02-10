@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我 | 我的个人世界</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f8f8f8;
+            color: #222;
+            line-height: 1.6;
+        }
+        .navbar {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 600;
+            padding: 4px 8px;
+            border: 2px solid transparent;
+        }
+        .nav-links a.active {
+            background: #000;
+            color: #fff;
+            border-radius: 6px;
+        }
+        .mail-icon {
+            font-size: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .page-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .about-content {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .about-section {
+            margin-bottom: 20px;
+        }
+        .about-section h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-links">
+            首页
+            关于我
+            项目
+            产品
+        </div>
+        <div class="mail-icon">✉️</div>
+    </div>
+
+    <div class="container">
+        <h2 class="page-title">关于我</h2>
+        <div class="about-content">
+            <div class="about-section">
+                <h3>📚 教育背景</h3>
+                <p>XX大学 会计专业 在读</p >
+            </div>
+            <div class="about-section">
+                <h3>💻 技能方向</h3>
+                <p>MySQL数据库、后端开发、网页设计，产品运营</p >
+            </div>
+            <div class="about-section">
+                <h3>🎨 兴趣爱好</h3>
+                <p>编程、理财、滑雪、网球教练兼职</p >
+            </div>
+        </div>
+    </div>
+</body>
+</html>

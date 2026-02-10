@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页 | 我的个人世界</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #f8f8f8;
+            color: #222;
+            line-height: 1.6;
+        }
+        /* 导航栏 */
+        .navbar {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 600;
+            padding: 4px 8px;
+            border: 2px solid transparent;
+        }
+        .nav-links a.active {
+            background: #000;
+            color: #fff;
+            border-radius: 6px;
+        }
+        .mail-icon {
+            font-size: 20px;
+        }
+        /* 容器 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* 首页内容 */
+        .welcome-box {
+            margin: 30px 0;
+        }
+        .welcome-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .welcome-subtitle {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 6px 16px;
+            font-size: 28px;
+            font-weight: 800;
+            border: 3px solid #000;
+            margin-bottom: 20px;
+        }
+        .intro-text {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        /* ID卡 */
+        .id-card {
+            border: 3px solid #000;
+            border-radius: 12px;
+            background: #fff;
+            padding: 12px;
+            max-width: 320px;
+            margin: 0 auto 20px;
+        }
+        @media (min-width: 600px) {
+            .id-card {
+                float: right;
+                margin: 0 0 20px 20px;
+            }
+        }
+        .id-header {
+            background: #39b54a;
+            color: #000;
+            font-weight: bold;
+            padding: 4px 8px;
+            border: 2px solid #000;
+            margin-bottom: 10px;
+        }
+        .id-row {
+            display: flex;
+            margin-bottom: 8px;
+            border: 2px solid #000;
+        }
+        .id-label {
+            background: #ffde59;
+            width: 80px;
+            padding: 4px;
+            font-weight: bold;
+            border-right: 2px solid #000;
+        }
+        .id-value {
+            flex: 1;
+            padding: 4px 8px;
+        }
+        .id-value.blue {
+            background: #99ccff;
+        }
+        .id-value.purple {
+            background: #e6ccff;
+        }
+        .id-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+        .barcode {
+            width: 120px;
+            height: 30px;
+            background: repeating-linear-gradient(90deg, #000, #000 2px, transparent 2px, transparent 4px);
+        }
+        .vibe-btn {
+            background: #ff3399;
+            color: #fff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        /* 清除浮动 */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-links">
+            首页
+            关于我
+            项目
+            产品
+        </div>
+        <div class="mail-icon">✉️</div>
+    </div>
+
+    <div class="container clearfix">
+        <div class="welcome-box">
+            <h1 class="welcome-title">Welcome to</h1>
+            <div class="welcome-subtitle">我的个人世界！</div>
+
+            <div class="id-card">
+                <div class="id-header">ID CARD<br>福州外语外贸</div>
+                <div class="id-row">
+                    <div class="id-label">NAME</div>
+                    <div class="id-value">周末</div>
+                </div>
+                <div class="id-row">
+                    <div class="id-label">MAJOR</div>
+                    <div class="id-value blue">会计专业</div>
+                </div>
+                <div class="id-row">
+                    <div class="id-label">JOB</div>
+                    <div class="id-value purple">学生 / 开发者</div>
+                </div>
+                <div class="id-footer">
+                    <div class="barcode"></div>
+                    <div class="vibe-btn">SPECIAL<br>VIBE</div>
+                </div>
+            </div>
+
+            <p class="intro-text">
+                我出生于2005年，在陕西的一个小地方长大。<br>
+                家庭环境比较自由，家人都不会对我的选择做过多干涉。<br>
+                这导致我在肆意生长的过程中，拥有了很多复杂的成分。<br>
+                Anyway，欢迎来到我的世界！
+            </p >
+            <p class="intro-text">
+                我是一个高精力<br>
+                对出去游山玩水感兴趣，精力异常旺盛，脑子里idea疯狂溢出。<br>
+                现实中选择性社恐，在网络上结交了一群素未谋面的电子好友！
+            </p >
+            <p class="intro-text">
+                目前是一名会计专业学生，同时在学习数据库与后端开发。<br>
+                也在尝试用代码和设计表达自己的想法，搭建属于自己的数字空间。
+            </p >
+        </div>
+    </div>
+</body>
+</html>
