@@ -1,250 +1,89 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>产品 - 等会儿吃啥？</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
-body{background:#fef9f3;color:#333;overflow-x:hidden}
-
-/* 导航栏 */
-nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000;z-index:999}
-.nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:12px 20px}
-.nav-links{display:flex;gap:20px}
-.nav-links a{text-decoration:none;color:#333;font-weight:500;padding:6px 12px;border:2px solid transparent;transition:all 0.3s}
-.nav-links a.active{background:#000;color:#fff;border-color:#000;border-radius:4px}
-.nav-links a:hover{border-color:#000;border-radius:4px}
-
-.container{max-width:1200px;margin:80px auto 0;padding:0 20px}
-
-/* 产品主页 */
-.product-home{padding:40px 0}
-.product-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px}
-.product-title-area{max-width:600px}
-.ai-lab-badge{background:#000;color:#fff;font-size:10px;padding:4px 8px;border-radius:4px;display:inline-block;margin-bottom:12px}
-.product-title{font-size:48px;font-weight:bold;margin-bottom:16px;line-height:1.1}
-.product-title .vibe{color:#000}
-.product-title .workshop{background:#ffd100;padding:4px 16px;border:2px solid #000;box-shadow:4px 4px 0 #000;display:inline-block;transform:rotate(-1deg)}
-.product-desc{font-size:14px;color:#666;line-height:1.6}
-.search-box{background:#fff;border:2px solid #000;border-radius:12px;padding:10px 16px;display:flex;align-items:center;gap:8px;min-width:280px}
-.search-box input{border:none;outline:none;font-size:14px;background:transparent;width:100%}
-
-/* 产品卡片 */
-.product-card{background:#fff;border:2px solid #000;border-radius:16px;padding:24px;max-width:380px;position:relative;transition:all 0.4s ease;cursor:pointer;overflow:hidden}
-.product-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#fff8f0 0%,#fff 100%);opacity:0;transition:opacity 0.4s ease}
-.product-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:10px 10px 0 #000}
-.product-card:hover::before{opacity:1}
-.card-content{position:relative;z-index:1}
-.card-tag{width:4px;height:40px;background:#ffd100;float:left;margin-right:12px}
-.card-title{font-size:18px;font-weight:bold;margin-bottom:12px}
-.card-text{font-size:12px;color:#666;line-height:1.6;margin-bottom:24px;clear:both}
-.view-btn{background:#ffd100;border:2px solid #000;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:bold;display:flex;align-items:center;justify-content:space-between;width:160px;transition:all 0.3s ease}
-.view-btn:hover{background:#ffc107;transform:scale(1.05)}
-.release-date{font-size:10px;color:#999;margin-top:16px;text-align:right}
-
-/* 详情页 */
-.product-detail{display:none;padding:30px;background:#fff8e8;border:2px solid #000;border-radius:16px;margin-bottom:40px}
-.product-detail.active{display:block;animation:fadeIn 0.6s ease forwards}
-@keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.detail-title{text-align:center;font-size:32px;color:#ff3b30;text-shadow:2px 2px 0 #ffd100;margin-bottom:10px}
-.detail-desc{text-align:center;color:#666;margin-bottom:20px}
-.status{text-align:center;margin-bottom:20px;font-size:14px;color:#ff3b30}
-.random-btn{width:100%;background:#ff3b30;color:#fff;border:2px solid #000;border-radius:12px;padding:16px;font-size:18px;font-weight:bold;cursor:pointer;transition:all 0.3s}
-.random-btn:hover{transform:scale(1.03)}
-.random-btn:disabled{background:#999}
-
-/* 弹窗 */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center}
-.modal.active{display:flex;animation:fadeIn 0.3s ease}
-.modal-card{background:#fff;border:4px solid #ff3b30;border-radius:16px;padding:24px;max-width:400px;width:90%}
-.close{float:right;background:#000;color:#fff;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer}
-.res-name{font-size:20px;font-weight:bold;margin:10px 0}
-.res-add{color:#666;font-size:14px;margin-bottom:20px}
-.action{display:flex;gap:12px}
-.go{flex:1;background:#000;color:#fff;border:none;border-radius:8px;padding:12px;font-weight:bold;cursor:pointer}
-.again{width:50px;background:#ffd100;border:2px solid #000;border-radius:8px;font-size:20px;cursor:pointer}
-
-/* 列表 */
-.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:20px 0}
-.item{background:#fff;border:2px solid #000;border-radius:8px;padding:12px}
-.item .name{font-weight:bold}
-.item .dist{font-size:12px;color:#666}
-
-/* 动态装饰 */
-.floating{position:fixed;z-index:-1;animation:float 6s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-.bubble1{top:10%;left:10%;width:60px;height:60px;background:#ffd100;border-radius:50%;opacity:0.2}
-.bubble2{top:60%;right:15%;width:80px;height:80px;background:#ff3b30;border-radius:50%;opacity:0.1}
-.bubble3{bottom:20%;left:20%;width:40px;height:40px;background:#000;border-radius:50%;opacity:0.05}
-
-@media(max-width:768px){
-.product-header{flex-direction:column;gap:20px}
-.product-title{font-size:36px}
-.list{grid-template-columns:1fr}
-}
-</style>
-</head>
-
-<body>
-<!-- 浮动装饰 -->
-<div class="floating bubble1"></div>
-<div class="floating bubble2"></div>
-<div class="floating bubble3"></div>
-
-<nav>
-  <div class="nav-container">
-    <div class="logo">我的个人网站</div>
-    <div class="nav-links">
-     <a href="index.html">首页</a>
-      <a herf="about.html">关于我</a>
-      <a href="projects.html">项目</a>
-      <a href="product.htmi"
-        class="active">产品</a>
-      <a href="contant.html">联系我</a>
-    </div>
-  </div>
-</nav>
-
-<div class="container">
-<div class="product-home" id="home">
-  <div class="product-header">
-    <div class="product-title-area">
-      <div class="ai-lab-badge">AI LAB</div>
-      <h1 class="product-title"><span class="vibe">Vibe</span><span class="workshop">Workshop</span></h1>
-      <p class="product-desc">为了让生活和工作简单、有趣一点点，和AI大聪明聊出来一些代码边角料。</p >
-    </div>
-    <div class="search-box"><span>🔍</span><input placeholder="搜索产品..."></div>
-  </div>
-
-  <div class="product-card" id="card">
-    <div class="card-content">
-      <div class="card-tag"></div>
-      <h3 class="card-title">既然不知道吃什么，不如把决策权交给命运。</h3>
-      <p class="card-text">支持LBS定位、随机推荐、一键导航，让每一次“随便”都充满惊喜。</p >
-      <div class="view-btn">View Product <span>→</span></div>
-      <div class="release-date">RELEASED ON 2026.04.17</div>
-    </div>
-  </div>
-</div>
-
-<div class="product-detail" id="detail">
-  <h2 class="detail-title">🍽️ 等会儿吃啥？</h2>
-  <p class="detail-desc">点击按钮，随机一家附近真实餐厅</p >
-  <div class="status" id="status">正在获取位置…</div>
-  <button class="random-btn" id="go" disabled>加载中…</button>
-  <div class="list" id="list"></div>
-</div>
-
-<div class="modal" id="modal">
-  <div class="modal-card">
-    <button class="close" id="close">×</button>
-    <div class="res-name" id="rname"></div>
-    <div class="res-add" id="raddr"></div>
-    <div class="action">
-      <button class="go" id="tonav">高德导航</button>
-      <button class="go" id="tobaidu">百度导航</button>
-      <button class="again" id="reroll">🔄</button>
-    </div>
-  </div>
-</div>
-
-</div>
-
 <script>
-const home = document.getElementById('home')
-const detail = document.getElementById('detail')
-const card = document.getElementById('card')
-const go = document.getElementById('go')
-const status = document.getElementById('status')
-const list = document.getElementById('list')
-const modal = document.getElementById('modal')
-const rname = document.getElementById('rname')
-const raddr = document.getElementById('raddr')
-const close = document.getElementById('close')
-const reroll = document.getElementById('reroll')
-const tonav = document.getElementById('tonav')
-const tobaidu = document.getElementById('tobaidu')
+    // 全局变量
+    let points = []; // 存储餐厅数据
+    const statusText = document.getElementById('resultArea');
+    // 填入你的高德Key
+    const AMAP_KEY = 'e77d3b35665497095c812fab7f3d10d9';
 
-let points = []
-let current = null
-let mylat, mylng
+    /**
+     * 核心主函数
+     */
+    async function decideWhereToEat() {
+        // 1. 显示加载中
+        statusText.innerHTML = '<div class="loading-wrapper"><span class="loading"></span> 定位中...</div>';
+        
+        try {
+            // 2. 获取用户位置
+            const position = await getLocation();
+            const { latitude, longitude } = position.coords;
+            statusText.innerHTML = '<div class="loading-wrapper"><span class="loading"></span> 搜索附近餐厅...</div>';
 
-card.addEventListener('click', () => {
-  home.style.display = 'none'
-  detail.classList.add('active')
-  getLocation()
-})
+            // 3. 加载高德地图餐厅数据
+            await loadNearbyRestaurants(longitude, latitude);
 
-function getLocation() {
-  if (!navigator.geolocation) {
-    status.textContent = '设备不支持定位'
-    return
-  }
-  navigator.geolocation.getCurrentPosition(async pos => {
-    mylat = pos.coords.latitude
-    mylng = pos.coords.longitude
-    status.textContent = '正在加载附近餐厅...'
-    await loadNearbyRestaurants()
-    go.disabled = false
-    go.textContent = '随便选一个！'
-  }, () => {
-    status.textContent = '定位失败，请检查权限设置'
-  })
-}
+            // 4. 随机选择并展示
+            if (points.length > 0) {
+                const randomIndex = Math.floor(Math.random() * points.length);
+                showRestaurant(points[randomIndex]);
+            } else {
+                throw new Error('未找到餐厅数据');
+            }
 
-// 从高德地图公开接口获取真实餐厅数据（无需 Key）
-async function loadNearbyRestaurants() {
-  try {
-    // 使用高德地图的公开搜索接口
-    const response = await fetch(`https://restapi.amap.com/v3/place/around?key=	e77d3b35665497095c812fab7f3d10d9&location=${mylng},${mylat}&radius=3000&types=050000&offset=20&page=1&extensions=all`)
-    const data = await response.json()
-    if (data.status === '1') {
-      points = data.pois
-      showList()
-      status.textContent = `已加载 ${points.length} 家附近餐厅`
-    } else {
-      status.textContent = '加载失败，正在尝试备用方案...'
-      // 如果高德接口失败，尝试使用百度地图
-      await loadNearbyRestaurantsBaidu()
+        } catch (error) {
+            console.error('错误:', error);
+            // 任何环节失败，直接显示模拟数据
+            statusText.innerHTML = '<p class="status-text" style="color: #ff4400;">获取失败，使用模拟数据</p >';
+            makeFakeRestaurants();
+            const randomIndex = Math.floor(Math.random() * points.length);
+            showRestaurant(points[randomIndex]);
+        }
     }
-  } catch (error) {
-    status.textContent = '高德加载失败，正在尝试百度地图...'
-    await loadNearbyRestaurantsBaidu()
-  }
-}
+
+    /**
+     * 获取用户地理位置
+     */
+    function getLocation() {
+        return new Promise((resolve, reject) => {
+            if (!navigator.geolocation) {
+                reject(new Error('您的浏览器不支持定位'));
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(resolve, (err) => {
+                reject(new Error('用户拒绝定位或定位失败'));
+            });
+        });
+    }
+
+    /**
+     * 加载高德地图附近餐厅 (仅保留高德，彻底删除百度)
+     */
+    async function loadNearbyRestaurants(lng, lat) {
+        points = []; // 清空旧数据
+        const url = `https://restapi.amap.com/v3/place/around?key=${AMAP_KEY}&location=${lng},${lat}&radius=3000&types=050000&offset=20&output=JSON`;
+        
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status === '1' && data.pois && data.pois.length > 0) {
+            points = data.pois; // 成功获取高德数据
+        } else {
+            throw new Error('高德地图返回空数据或Key错误');
+        }
+    }
 
 
 
-function showList() {
-  list.innerHTML = points.map(p => `
-  <div class="item">
-    <div class="name">${p.name}</div>
-    <div class="dist">${p.distance}m</div>
-  </div>`).join('')
-}
-
-go.addEventListener('click', () => {
-  if (!points.length) return
-  current = points[Math.floor(Math.random() * points.length)]
-  rname.textContent = current.name
-  raddr.textContent = current.address
-  modal.classList.add('active')
-})
-
-// 高德地图导航
-tonav.addEventListener('click', () => {
-  if (!current) return
-  window.open(`https://ditu.amap.com/dir?w=${current.location}&name=${encodeURIComponent(current.name)}`)
-})
-
-
-
-close.addEventListener('click', () => modal.classList.remove('active'))
-reroll.addEventListener('click', () => go.click())
+    /**
+     * 展示餐厅信息
+     */
+    function showRestaurant(restaurant) {
+        const card = `
+            <div class="restaurant-card">
+                <h3>${restaurant.name || '未知餐厅'}</h3>
+                <p>📍 ${restaurant.address || '地址未知'}</p >
+                <p>📞 ${restaurant.tel || '电话未知'}</p >
+            </div>
+        `;
+        statusText.innerHTML = card;
+    }
 </script>
-</body>
-</html>
-
-
-
