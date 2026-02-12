@@ -1,400 +1,10 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>产品 - 等会儿吃啥？</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-}
-
-body {
-  background: #fef9f3;
-  color: #333;
-  overflow-x: hidden;
-}
-
-/* 导航栏 —— 与你网站完全一致 */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #fff;
-  border-bottom: 2px solid #000;
-  z-index: 999;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  padding: 6px 12px;
-  border: 2px solid transparent;
-  transition: all 0.3s;
-}
-
-.nav-links a.active {
-  background: #000;
-  color: #fff;
-  border-color: #000;
-  border-radius: 4px;
-}
-
-.nav-links a:hover {
-  border-color: #000;
-  border-radius: 4px;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 80px auto 0;
-  padding: 0 20px;
-}
-
-/* 产品主页 —— 100% 还原 Vibe Workshop 风格 */
-.product-home {
-  padding: 40px 0;
-}
-
-.product-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 40px;
-}
-
-.product-title-area {
-  max-width: 600px;
-}
-
-.ai-lab-badge {
-  background: #000;
-  color: #fff;
-  font-size: 10px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  display: inline-block;
-  margin-bottom: 12px;
-}
-
-.product-title {
-  font-size: 48px;
-  font-weight: bold;
-  margin-bottom: 16px;
-  line-height: 1.1;
-}
-
-.product-title .vibe {
-  color: #000;
-}
-
-.product-title .workshop {
-  background: #ffd100;
-  padding: 4px 16px;
-  border: 2px solid #000;
-  box-shadow: 4px 4px 0 #000;
-  display: inline-block;
-  transform: rotate(-1deg);
-}
-
-.product-desc {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.6;
-}
-
-.search-box {
-  background: #fff;
-  border: 2px solid #000;
-  border-radius: 12px;
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 280px;
-}
-
-.search-box input {
-  border: none;
-  outline: none;
-  font-size: 14px;
-  background: transparent;
-  width: 100%;
-}
-
-/* 产品卡片 —— 完全还原截图样式 */
-.product-card {
-  background: #fff;
-  border: 2px solid #000;
-  border-radius: 16px;
-  padding: 24px;
-  max-width: 380px;
-  position: relative;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow: 0 0 0 #000;
-}
-
-.product-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #fff8f0 0%, #fff 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 8px 8px 0 #000;
-}
-
-.product-card:hover::before {
-  opacity: 1;
-}
-
-.card-content {
-  position: relative;
-  z-index: 1;
-}
-
-.card-tag {
-  width: 4px;
-  height: 40px;
-  background: #ffd100;
-  float: left;
-  margin-right: 12px;
-}
-
-.card-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.card-text {
-  font-size: 12px;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 24px;
-  clear: both;
-}
-
-.view-btn {
-  background: #ffd100;
-  border: 2px solid #000;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 160px;
-  transition: all 0.3s ease;
-}
-
-.view-btn:hover {
-  background: #ffc107;
-  transform: scale(1.05);
-}
-
-.release-date {
-  font-size: 10px;
-  color: #999;
-  margin-top: 16px;
-  text-align: right;
-}
-
-/* 产品详情页 */
-.product-detail {
-  display: none;
-  padding: 30px;
-  background: #fff8e8;
-  border: 2px solid #000;
-  border-radius: 16px;
-  margin-bottom: 40px;
-}
-
-.product-detail.active {
-  display: block;
-  animation: fadeIn 0.5s forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.detail-title {
-  text-align: center;
-  font-size: 32px;
-  color: #ff3b30;
-  text-shadow: 2px 2px 0 #ffd100;
-  margin-bottom: 10px;
-}
-
-.detail-desc {
-  text-align: center;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.status {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: #ff3b30;
-}
-
-.random-btn {
-  width: 100%;
-  background: #ff3b30;
-  color: #fff;
-  border: 2px solid #000;
-  border-radius: 12px;
-  padding: 16px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.random-btn:hover {
-  transform: scale(1.02);
-}
-
-.random-btn:disabled {
-  background: #999;
-  cursor: not-allowed;
-}
-
-/* 结果弹窗 */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal.active {
-  display: flex;
-}
-
-.modal-card {
-  background: #fff;
-  border: 4px solid #ff3b30;
-  border-radius: 16px;
-  padding: 24px;
-  max-width: 400px;
-  width: 90%;
-}
-
-.close {
-  float: right;
-  background: #000;
-  color: #fff;
-  border: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.res-name {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.res-add {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.action {
-  display: flex;
-  gap: 12px;
-}
-
-.go {
-  flex: 1;
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.again {
-  width: 50px;
-  background: #ffd100;
-  border: 2px solid #000;
-  border-radius: 8px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* 餐厅列表 */
-.list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 12px;
-  margin: 20px 0;
-}
-
-.item {
-  background: #fff;
-  border: 2px solid #000;
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.item .name {
-  font-weight: bold;
-}
-
-.item .dist {
-  font-size: 12px;
-  color: #666;
-}
-
-/* 响应式适配 */
-@media (max-width: 768px) {
-  .product-header {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .product-title {
-    font-size: 36px;
-  }
-  .list {
-    grid-template-columns: 1fr;
-  }
 *{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
 body{background:#fef9f3;color:#333;overflow-x:hidden}
 
@@ -402,7 +12,7 @@ body{background:#fef9f3;color:#333;overflow-x:hidden}
 nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000;z-index:999}
 .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:12px 20px}
 .nav-links{display:flex;gap:20px}
-.nav-links a{text-decoration:none;color:#333;font-weight:500;padding:6px 12px;border:2px solid transparent;transition:all .3s}
+.nav-links a{text-decoration:none;color:#333;font-weight:500;padding:6px 12px;border:2px solid transparent;transition:all 0.3s}
 .nav-links a.active{background:#000;color:#fff;border-color:#000;border-radius:4px}
 .nav-links a:hover{border-color:#000;border-radius:4px}
 
@@ -421,32 +31,32 @@ nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000
 .search-box input{border:none;outline:none;font-size:14px;background:transparent;width:100%}
 
 /* 产品卡片 */
-.product-card{background:#fff;border:2px solid #000;border-radius:16px;padding:24px;max-width:380px;position:relative;transition:all .4s ease;cursor:pointer;overflow:hidden}
-.product-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#fff8f0 0%,#fff 100%);opacity:0;transition:opacity .4s ease}
+.product-card{background:#fff;border:2px solid #000;border-radius:16px;padding:24px;max-width:380px;position:relative;transition:all 0.4s ease;cursor:pointer;overflow:hidden}
+.product-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#fff8f0 0%,#fff 100%);opacity:0;transition:opacity 0.4s ease}
 .product-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:10px 10px 0 #000}
 .product-card:hover::before{opacity:1}
 .card-content{position:relative;z-index:1}
 .card-tag{width:4px;height:40px;background:#ffd100;float:left;margin-right:12px}
 .card-title{font-size:18px;font-weight:bold;margin-bottom:12px}
 .card-text{font-size:12px;color:#666;line-height:1.6;margin-bottom:24px;clear:both}
-.view-btn{background:#ffd100;border:2px solid #000;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:bold;display:flex;align-items:center;justify-content:space-between;width:160px;transition:all .3s ease}
+.view-btn{background:#ffd100;border:2px solid #000;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:bold;display:flex;align-items:center;justify-content:space-between;width:160px;transition:all 0.3s ease}
 .view-btn:hover{background:#ffc107;transform:scale(1.05)}
 .release-date{font-size:10px;color:#999;margin-top:16px;text-align:right}
 
 /* 详情页 */
 .product-detail{display:none;padding:30px;background:#fff8e8;border:2px solid #000;border-radius:16px;margin-bottom:40px}
-.product-detail.active{display:block;animation:fadeIn .6s ease forwards}
+.product-detail.active{display:block;animation:fadeIn 0.6s ease forwards}
 @keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .detail-title{text-align:center;font-size:32px;color:#ff3b30;text-shadow:2px 2px 0 #ffd100;margin-bottom:10px}
 .detail-desc{text-align:center;color:#666;margin-bottom:20px}
 .status{text-align:center;margin-bottom:20px;font-size:14px;color:#ff3b30}
-.random-btn{width:100%;background:#ff3b30;color:#fff;border:2px solid #000;border-radius:12px;padding:16px;font-size:18px;font-weight:bold;cursor:pointer;transition:all .3s}
+.random-btn{width:100%;background:#ff3b30;color:#fff;border:2px solid #000;border-radius:12px;padding:16px;font-size:18px;font-weight:bold;cursor:pointer;transition:all 0.3s}
 .random-btn:hover{transform:scale(1.03)}
 .random-btn:disabled{background:#999}
 
 /* 弹窗 */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center}
-.modal.active{display:flex;animation:fadeIn .3s ease}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center}
+.modal.active{display:flex;animation:fadeIn 0.3s ease}
 .modal-card{background:#fff;border:4px solid #ff3b30;border-radius:16px;padding:24px;max-width:400px;width:90%}
 .close{float:right;background:#000;color:#fff;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer}
 .res-name{font-size:20px;font-weight:bold;margin:10px 0}
@@ -464,9 +74,9 @@ nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000
 /* 动态装饰 */
 .floating{position:fixed;z-index:-1;animation:float 6s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-.bubble1{top:10%;left:10%;width:60px;height:60px;background:#ffd100;border-radius:50%;opacity:.2}
-.bubble2{top:60%;right:15%;width:80px;height:80px;background:#ff3b30;border-radius:50%;opacity:.1}
-.bubble3{bottom:20%;left:20%;width:40px;height:40px;background:#000;border-radius:50%;opacity:.05}
+.bubble1{top:10%;left:10%;width:60px;height:60px;background:#ffd100;border-radius:50%;opacity:0.2}
+.bubble2{top:60%;right:15%;width:80px;height:80px;background:#ff3b30;border-radius:50%;opacity:0.1}
+.bubble3{bottom:20%;left:20%;width:40px;height:40px;background:#000;border-radius:50%;opacity:0.05}
 
 @media(max-width:768px){
 .product-header{flex-direction:column;gap:20px}
@@ -483,61 +93,30 @@ nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000
 <div class="floating bubble3"></div>
 
 <nav>
-<div class="nav-container">
-<div class="logo">我的个人网站</div>
-<div class="nav-links">
-      <a href="index.html">首页</a>
+  <div class="nav-container">
+    <div class="logo">我的个人网站</div>
+    <div class="nav-links">
+    <a href="index.html">首页</a>
       <a href="about.html">关于我</a>
-      <a href="projects.html"
-        class="active">项目</a>
-      <a href="product.html">产品</a>
-      <a href="index.html#contant">联系我</a>
-      首页
-      关于我
-      项目
-      产品
-      联系我
-</div>
-</div>
+      <a href="projects.html">项目</a>
+      <a href="product.html"
+        class="active">产品</a>
+      <a href="contact.html">联系我</a>
+    </div>
+  </div>
 </nav>
 
 <div class="container">
-
-  <!-- 产品主页 —— 与截图完全一致 -->
-  <div class="product-home" id="home">
-    <div class="product-header">
-      <div class="product-title-area">
-        <div class="ai-lab-badge">AI LAB</div>
-        <h1 class="product-title">
-          <span class="vibe">Vibe</span>
-          <span class="workshop">Workshop</span>
-        </h1>
-        <p class="product-desc">为了让生活和工作简单、有趣一点点，和AI大聪明聊出来一些代码边角料。</p >
-      </div>
-      <div class="search-box">
-        <span>🔍</span>
-        <input type="text" placeholder="搜索产品...">
-      </div>
 <div class="product-home" id="home">
   <div class="product-header">
     <div class="product-title-area">
       <div class="ai-lab-badge">AI LAB</div>
       <h1 class="product-title"><span class="vibe">Vibe</span><span class="workshop">Workshop</span></h1>
       <p class="product-desc">为了让生活和工作简单、有趣一点点，和AI大聪明聊出来一些代码边角料。</p >
-</div>
+    </div>
     <div class="search-box"><span>🔍</span><input placeholder="搜索产品..."></div>
   </div>
 
-    <div class="product-card" id="card">
-      <div class="card-content">
-        <div class="card-tag"></div>
-        <h3 class="card-title">既然不知道吃什么，不如把决策权交给命运。</h3>
-        <p class="card-text">支持LBS定位、人工定位、自定义距离和餐厅类型，让每一次“随便”都充满命运的指引。</p >
-        <div class="view-btn">
-          View Product <span>→</span>
-        </div>
-        <div class="release-date">RELEASED ON 2026.04.17</div>
-      </div>
   <div class="product-card" id="card">
     <div class="card-content">
       <div class="card-tag"></div>
@@ -545,18 +124,10 @@ nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000
       <p class="card-text">支持LBS定位、随机推荐、一键导航，让每一次“随便”都充满惊喜。</p >
       <div class="view-btn">View Product <span>→</span></div>
       <div class="release-date">RELEASED ON 2026.04.17</div>
-</div>
-</div>
+    </div>
+  </div>
 </div>
 
-  <!-- 产品详情页（真实定位+高德导航） -->
-  <div class="product-detail" id="detail">
-    <h2 class="detail-title">🍽️ 等会儿吃啥？</h2>
-    <p class="detail-desc">点击按钮，随机一家附近真实餐厅</p >
-    <div class="status" id="status">正在获取位置…</div>
-    <button class="random-btn" id="go" disabled>加载中…</button>
-    <div class="list" id="list"></div>
-  </div>
 <div class="product-detail" id="detail">
   <h2 class="detail-title">🍽️ 等会儿吃啥？</h2>
   <p class="detail-desc">点击按钮，随机一家附近真实餐厅</p >
@@ -565,16 +136,6 @@ nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000
   <div class="list" id="list"></div>
 </div>
 
-  <!-- 结果弹窗 -->
-  <div class="modal" id="modal">
-    <div class="modal-card">
-      <button class="close" id="close">×</button>
-      <div class="res-name" id="rname"></div>
-      <div class="res-add" id="raddr"></div>
-      <div class="action">
-        <button class="go" id="tonav">导航去吃（高德）</button>
-        <button class="again" id="reroll">🔄</button>
-      </div>
 <div class="modal" id="modal">
   <div class="modal-card">
     <button class="close" id="close">×</button>
@@ -582,131 +143,99 @@ nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000
     <div class="res-add" id="raddr"></div>
     <div class="action">
       <button class="go" id="tonav">高德导航</button>
-      <button class="go" id="tobaidu">百度导航</button>
       <button class="again" id="reroll">🔄</button>
-</div>
-</div>
-</div>
-
+    </div>
+  </div>
 </div>
 
-@@ -487,71 +163,80 @@ <h2 class="detail-title">🍽️ 等会儿吃啥？</h2>
+</div>
+
+<script>
+const home = document.getElementById('home')
+const detail = document.getElementById('detail')
+const card = document.getElementById('card')
+const go = document.getElementById('go')
+const status = document.getElementById('status')
+const list = document.getElementById('list')
+const modal = document.getElementById('modal')
+const rname = document.getElementById('rname')
+const raddr = document.getElementById('raddr')
 const close = document.getElementById('close')
 const reroll = document.getElementById('reroll')
 const tonav = document.getElementById('tonav')
-const tobaidu = document.getElementById('tobaidu')
 
 let points = []
 let current = null
-let mylat,mylng
+let mylat, mylng
+
+// 你自己的真实高德KEY
+const AMAP_KEY = "4d5f4f4b2460756568ad57f3c6e3b03c";
 
 card.addEventListener('click', () => {
   home.style.display = 'none'
-card.addEventListener('click',()=>{
-  home.style.display='none'
-detail.classList.add('active')
-  getMyLoc()
+  detail.classList.add('active')
   getLocation()
 })
 
-function getMyLoc() {
+function getLocation() {
   if (!navigator.geolocation) {
     status.textContent = '设备不支持定位'
     return
   }
   navigator.geolocation.getCurrentPosition(async pos => {
-    const lat = pos.coords.latitude
-    const lng = pos.coords.longitude
-    status.textContent = `已定位：${lat.toFixed(6)}, ${lng.toFixed(6)}`
-    await loadNearby(lat, lng)
-    go.disabled = false
-    go.textContent = '随便选一个！'
-  }, err => {
-    status.textContent = '请允许位置权限后刷新重试'
-function getLocation(){
-  if(!navigator.geolocation){status.textContent='不支持定位';return}
-  navigator.geolocation.getCurrentPosition(pos=>{
     mylat = pos.coords.latitude
     mylng = pos.coords.longitude
-    status.textContent='已成功定位！'
-    makeFakeRestaurants()
-    go.disabled=false
-    go.textContent='随便选一个！'
-  },()=>{
-    status.textContent='定位失败，已启用本地随机'
-    makeFakeRestaurants()
-    go.disabled=false
-    go.textContent='随便选一个！'
-})
+    status.textContent = '正在加载附近餐厅...'
+    await loadNearbyRestaurants()
+  }, () => {
+    status.textContent = '定位失败，请开启定位权限'
+  })
 }
 
-async function loadNearby(lat, lng) {
-  const url = `https://restapi.amap.com/v3/place/around?key=47dda73cd99287d0ba26891d934d3340&location=${lng},${lat}&radius=3000&types=050000&offset=20&page=1&extensions=all`
+// 只使用高德地图真实接口
+async function loadNearbyRestaurants() {
   try {
-    const res = await fetch(url)
-    const data = await res.json()
-    if (data.status === '1') {
-      points = data.pois
-      showList()
+    const url = `https://restapi.amap.com/v3/place/around?key=${AMAP_KEY}&location=${mylng},${mylat}&radius=3000&types=050000&offset=20&page=1&extensions=all`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (data.status === '1' && data.pois && data.pois.length > 0) {
+      points = data.pois;
+      showList();
+      status.textContent = `已加载 ${points.length} 家附近餐厅`;
+      go.disabled = false;
+      go.textContent = '随便选一个！';
+    } else {
+      status.textContent = '未找到附近餐厅，请稍后再试';
     }
-  } catch (e) {
-    status.textContent = '加载附近餐厅失败，请稍后再试'
-// 不注册API → 直接生成真实感附近餐厅（你要的最终方案）
-function makeFakeRestaurants(){
-  const names = ["沙县小吃","黄焖鸡米饭","麻辣烫","肯德基","麦当劳","星巴克","老乡鸡","奈雪的茶","兰州拉面","重庆小面","奶茶博士","寿司屋","烤肉店","火锅先生","家常菜馆"]
-  const adds = ["XX路XX号","XX广场1楼","XX购物中心B1","XX小区门口","XX大厦旁"]
-  const list = []
-  for(let i=0;i<15;i++){
-    list.push({
-      name: names[Math.floor(Math.random()*names.length)] + (i+1),
-      address: adds[Math.floor(Math.random()*adds.length)],
-      location: `${mylng+Math.random()*0.02},${mylat+Math.random()*0.02}`,
-      distance: Math.floor(Math.random()*2000)+100
-    })
-}
-  points = list
-  showList()
+  } catch (err) {
+    status.textContent = '加载失败：' + err.message;
+  }
 }
 
 function showList() {
   list.innerHTML = points.map(p => `
-function showList(){
-  list.innerHTML = points.map(p=>`
- <div class="item">
-   <div class="name">${p.name}</div>
-   <div class="dist">${p.distance}m</div>
- </div>`).join('')
+  <div class="item">
+    <div class="name">${p.name}</div>
+    <div class="dist">${p.distance}m</div>
+  </div>`).join('')
 }
 
 go.addEventListener('click', () => {
   if (!points.length) return
   current = points[Math.floor(Math.random() * points.length)]
-go.addEventListener('click',()=>{
-  if(!points.length)return
-  current = points[Math.floor(Math.random()*points.length)]
-rname.textContent = current.name
-raddr.textContent = current.address
-modal.classList.add('active')
+  rname.textContent = current.name
+  raddr.textContent = current.address
+  modal.classList.add('active')
 })
 
 tonav.addEventListener('click', () => {
   if (!current) return
-  const g = `https://ditu.amap.com/dir?w=${current.location}&name=${encodeURIComponent(current.name)}`
-  window.open(g)
-tonav.addEventListener('click',()=>{
-  if(!current)return
   window.open(`https://ditu.amap.com/dir?w=${current.location}&name=${encodeURIComponent(current.name)}`)
-})
-
-tobaidu.addEventListener('click',()=>{
-  if(!current)return
-  window.open(`https://map.baidu.com/dir?w=${current.location}&name=${encodeURIComponent(current.name)}`)
 })
 
 close.addEventListener('click', () => modal.classList.remove('active'))
 reroll.addEventListener('click', () => go.click())
-close.addEventListener('click',()=>modal.classList.remove('active'))
-reroll.addEventListener('click',()=>go.click())
 </script>
 </body>
 </html>
