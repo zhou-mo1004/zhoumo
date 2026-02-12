@@ -1,186 +1,325 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>项目 | 我的个人世界</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-        }
-        body {
-            background-color: #f8f8f8;
-            color: #222;
-            line-height: 1.6;
-        }
-        .navbar {
-            background: #fff;
-            border: 3px solid #000;
-            border-radius: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 20px;
-            margin: 20px auto;
-            max-width: 800px;
-        }
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #222;
-            font-weight: 600;
-            padding: 4px 8px;
-            border: 2px solid transparent;
-        }
-        .nav-links a.active {
-            background: #000;
-            color: #fff;
-            border-radius: 6px;
-        }
-        .mail-icon {
-            font-size: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .page-title {
-            font-size: 32px;
-            font-weight: 800;
-            margin: 30px 0;
-            text-align: center;
-        }
-        .timeline {
-            position: relative;
-            max-width: 700px;
-            margin: 40px auto;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: #000;
-            border: 2px dashed #fff;
-        }
-        .timeline-item {
-            width: 100%;
-            margin: 30px 0;
-            position: relative;
-        }
-        @media (min-width: 600px) {
-            .timeline-item {
-                width: 48%;
-            }
-            .timeline-item.left {
-                float: left;
-            }
-            .timeline-item.right {
-                float: right;
-            }
-            .timeline-item.left .timeline-dot {
-                right: -11%;
-            }
-            .timeline-item.right .timeline-dot {
-                left: -11%;
-            }
-        }
-        .timeline-dot {
-            position: absolute;
-            top: 10px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #000;
-            border: 3px solid #fff;
-            z-index: 1;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        @media (min-width: 600px) {
-            .timeline-dot {
-                left: auto;
-                transform: none;
-            }
-        }
-        .timeline-card {
-            border: 3px solid #000;
-            border-radius: 8px;
-            background: #fff;
-            padding: 12px;
-        }
-        .timeline-tag {
-            display: inline-block;
-            background: #007bff;
-            color: #fff;
-            font-size: 12px;
-            padding: 2px 6px;
-            border: 2px solid #000;
-            margin-bottom: 6px;
-        }
-        .timeline-date {
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的项目 - 个人网站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    body {
+      background: #fef9f3;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* 导航栏 */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #000;
+      z-index: 999;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 6px 12px;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .nav-links a.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      border-color: #000;
+      border-radius: 4px;
+    }
+
+    /* 页面容器 */
+    .container {
+      max-width: 1200px;
+      margin: 80px auto 0;
+      padding: 40px 20px;
+    }
+
+    /* 页面标题 */
+    .page-title {
+      font-size: 36px;
+      margin-bottom: 40px;
+      display: inline-block;
+      padding: 8px 16px;
+      background: #ff6b6b;
+      color: #fff;
+      border: 2px solid #000;
+      text-shadow: 2px 2px 0 #000;
+      transform: rotate(-2deg);
+    }
+
+    /* 项目卡片容器 */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    /* 项目卡片 */
+    .project-card {
+      background: #fff;
+      border: 3px solid #000;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 8px 8px 0 #000;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .project-card:hover::before {
+      left: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 12px 12px 0 #000;
+    }
+
+    .project-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #000;
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* 项目卡片颜色 */
+    .project-card:nth-child(1) {
+      background: #ffd93d;
+    }
+    .project-card:nth-child(2) {
+      background: #6bcb77;
+    }
+    .project-card:nth-child(3) {
+      background: #4d96ff;
+      color: #fff;
+    }
+    .project-card:nth-child(3) h3,
+    .project-card:nth-child(3) p {
+      color: #fff;
+    }
+
+    /* 项目详情页样式（示例） */
+    .project-detail {
+      background: #fff;
+      border: 3px solid #000;
+      border-radius: 12px;
+      padding: 32px;
+      margin: 40px 0;
+      box-shadow: 8px 8px 0 #000;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .project-detail.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-detail h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      display: inline-block;
+      padding: 8px 16px;
+      background: #ff6b6b;
+      color: #fff;
+      border: 2px solid #000;
+      text-shadow: 2px 2px 0 #000;
+    }
+
+    .project-detail h3 {
+      font-size: 20px;
+      margin: 24px 0 12px;
+      color: #000;
+    }
+
+    .project-detail p,
+    .project-detail ul {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    .project-detail ul {
+      padding-left: 24px;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .page-title {
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="nav-links">
-            <a href="index.html">首页</a>
-            <a href="about.html">关于我</a>
-            <a href="projects.html">项目</a>
-            <a href="products.html">产品</a>
-            
-            
-            
-        </div>
-        <div class="mail-icon">✉️</div>
+  <!-- 导航栏 -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">我的个人网站</div>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="about.html">关于我</a>
+        <a href="projects.html"
+            class="active">项目</a>
+        <a href="product.html">产品</a>
+        <a href="contant.html">联系我</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 内容容器 -->
+  <div class="container">
+    <h1 class="page-title">我的项目</h1>
+
+    <!-- 项目卡片 -->
+    <div class="projects-grid">
+      <div class="project-card" onclick="showProjectDetail('erp')">
+        <h3>个人财务管理分析系统</h3>
+        <p>ERP企业经营沙盘模拟，财务分析与实操</p >
+      </div>
+
+      <div class="project-card" onclick="showProjectDetail('huarun')">
+        <h3>华润燃气企业培训</h3>
+        <p>项目运营跟踪数据，项目策划，执行落地</p >
+      </div>
+
+      <div class="project-card" onclick="showProjectDetail('lowcode')">
+        <h3>低代码开发</h3>
+        <p>大学生创新创业大赛-全维智能鱼病预警诊治平台，数据分析与采集</p >
+      </div>
     </div>
 
-    <div class="container">
-        <h2 class="page-title">地球Online · 开放游戏进度</h2>
-        <div class="timeline clearfix">
-            <div class="timeline-item left">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <span class="timeline-tag">[主线]</span>
-                    <div class="timeline-date">2025.09</div>
-                    <p>开始系统学习数据库与后端开发，了解mysql数据库的查询操作。</p >
-                </div>
-            </div>
-            <div class="timeline-item right">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="timeline-date">2025.04</div>
-                    <p>开通了理财账户，开始学习和实践个人资产管理。</p >
-                </div>
-            </div>
-            <div class="timeline-item right">
-                <div class="timeline-dot"></div>
-                <div class="timeline-card">
-                    <div class="timeline-date">2026.01</div>
-                    <p>激动地开始用AI辅助编程，上线了我的第一个个人网站。</p >
-                </div>
-            </div>
-        </div>
+    <!-- 项目1详情 -->
+    <div id="erp" class="project-detail">
+      <h2>个人财务管理分析系统</h2>
+      <h3>项目背景</h3>
+      <p>在ERP企业经营沙盘模拟课程中，我负责财务模块，通过模拟企业运营，深入理解财务报表分析、成本控制和资金管理。</p >
+      <h3>核心职责</h3>
+      <ul>
+        <li>编制模拟企业的资产负债表、利润表和现金流量表</li>
+        <li>分析成本结构，提出成本优化建议</li>
+        <li>制定资金计划，确保企业现金流稳定</li>
+        <li>使用Excel和Power BI进行数据可视化分析</li>
+      </ul>
+      <h3>项目成果</h3>
+      <p>通过精准的财务分析，帮助模拟企业在竞争中获得了行业第三的排名，提升了20%的利润率。</p >
     </div>
+
+    <!-- 项目2详情 -->
+    <div id="huarun" class="project-detail">
+      <h2>华润燃气企业培训</h2>
+      <h3>项目背景</h3>
+      <p>作为华润燃气企业培训项目的核心成员，我参与了从项目策划到落地执行的全流程，负责数据跟踪和效果评估。</p >
+      <h3>核心职责</h3>
+      <ul>
+        <li>设计培训课程框架和内容体系</li>
+        <li>开发培训数据跟踪系统，实时监控学员进度</li>
+        <li>分析培训效果数据，优化培训方案</li>
+        <li>协调内外部资源，确保项目顺利落地</li>
+      </ul>
+      <h3>项目成果</h3>
+      <p>项目覆盖了100+员工，培训满意度达到95%，员工技能提升率提升了30%，获得了企业管理层的高度认可。</p >
+    </div>
+
+    <!-- 项目3详情 -->
+    <div id="lowcode" class="project-detail">
+      <h2>低代码开发</h2>
+      <h3>项目背景</h3>
+      <p>在大学生创新创业大赛中，我们团队开发了“全维智能鱼病预警诊治平台”，通过低代码技术快速搭建了集数据采集、分析和预警于一体的解决方案。</p >
+      <h3>核心职责</h3>
+      <ul>
+        <li>使用低代码平台搭建核心业务模块</li>
+        <li>设计数据采集流程，对接传感器和物联网设备</li>
+        <li>开发数据分析模型，实现鱼病预警功能</li>
+        <li>优化用户界面，提升产品易用性</li>
+      </ul>
+      <h3>项目成果</h3>
+      <p>项目获得了省级创新创业大赛银奖，已申请软件著作权，并与多家水产养殖企业达成合作意向。</p >
+    </div>
+  </div>
+
+  <script>
+    // 显示项目详情
+    function showProjectDetail(id) {
+      // 隐藏所有详情
+      document.querySelectorAll('.project-detail').forEach(detail => {
+        detail.classList.remove('visible');
+      });
+      // 显示选中的详情
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add('visible');
+        // 平滑滚动到详情
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // 页面加载时的动画
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.project-card').forEach((card, index) => {
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 100 * index);
+      });
+    });
+  </script>
 </body>
-
 </html>
