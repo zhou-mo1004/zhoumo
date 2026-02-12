@@ -261,6 +261,29 @@
       transform: rotate(-2deg);
     }
 
+    /* 时间线顶部大标题 */
+    .timeline-top-labels {
+      display: flex;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+
+    .timeline-top-label {
+      background: #fff;
+      border: 2px solid #000;
+      padding: 4px 12px;
+      font-weight: bold;
+    }
+
+    .timeline-top-label.main {
+      border-color: #2563eb;
+    }
+
+    .timeline-top-label.side {
+      border-color: #22c55e;
+    }
+
     /* 时间线 */
     .timeline {
       position: relative;
@@ -313,13 +336,15 @@
       position: relative;
     }
 
-    .timeline-item:nth-child(odd) .timeline-content {
-      margin-left: auto;
+    /* 主线任务在左侧 */
+    .timeline-item.main .timeline-content {
+      margin-right: auto;
       border-color: #2563eb;
     }
 
-    .timeline-item:nth-child(even) .timeline-content {
-      margin-right: auto;
+    /* 支线任务在右侧 */
+    .timeline-item.side .timeline-content {
+      margin-left: auto;
       border-color: #22c55e;
     }
 
@@ -342,25 +367,6 @@
       font-size: 15px;
     }
 
-    .timeline-label {
-      position: absolute;
-      top: -30px;
-      background: #fff;
-      border: 2px solid #000;
-      padding: 4px 12px;
-      font-weight: bold;
-    }
-
-    .timeline-item.main .timeline-label {
-      left: 0;
-      border-color: #2563eb;
-    }
-
-    .timeline-item.side .timeline-label {
-      right: 0;
-      border-color: #22c55e;
-    }
-
     /* 移动端适配 */
     @media (max-width: 768px) {
       .timeline::before {
@@ -377,12 +383,6 @@
         margin-right: 0 !important;
       }
 
-      .timeline-label {
-        position: static;
-        display: inline-block;
-        margin-bottom: 8px;
-      }
-
       .banner-content span {
         font-size: 16px;
         padding: 10px 20px;
@@ -396,13 +396,12 @@
     <div class="nav-container">
       <div class="logo">我的个人网站</div>
       <div class="nav-links">
-       <a href="index.html"> 首页</a>
-       <a href="about.html"> 关于我</a>
+       <a href="index.html">首页</a>
+        <a href="about.html"
+          class="active">关于我</a>
         <a href="projects.html">项目</a>
-        
-       <a href="product.html"> 产品</a>
-          <a href="contant.html">联系我</a>
-        ✉️
+        <a href="product.html">产品</a>
+        <a href="contact.html">联系我</a>
       </div>
     </div>
   </nav>
@@ -474,21 +473,25 @@
         <span>开放游戏进度</span>
       </h2>
 
+      <!-- 时间线顶部大标题 -->
+      <div class="timeline-top-labels">
+        <div class="timeline-top-label main">主线任务</div>
+        <div class="timeline-top-label side">支线任务</div>
+      </div>
+
       <div class="timeline">
         <!-- 主线任务1 -->
         <div class="timeline-item main">
           <div class="timeline-dot"></div>
-          <div class="timeline-label">主线任务</div>
           <div class="timeline-content">
             <h4>2024.09 <span>[主线]</span></h4>
-            <p>大学生，财务RPA </p >
+            <p>大学生，财务RPA</p >
           </div>
         </div>
 
         <!-- 支线任务1 -->
         <div class="timeline-item side">
           <div class="timeline-dot"></div>
-          <div class="timeline-label">支线任务</div>
           <div class="timeline-content">
             <h4>2026.02 <span>[支线]</span></h4>
             <p>激动地开始AI编程，上线了我的个人网站</p >
@@ -498,7 +501,6 @@
         <!-- 主线任务2 -->
         <div class="timeline-item main">
           <div class="timeline-dot"></div>
-          <div class="timeline-label">主线任务</div>
           <div class="timeline-content">
             <h4>2025.06 <span>[主线]</span></h4>
             <p>完成专业相关证书考试，顺利通过。</p >
@@ -508,7 +510,6 @@
         <!-- 支线任务2 -->
         <div class="timeline-item side">
           <div class="timeline-dot"></div>
-          <div class="timeline-label">支线任务</div>
           <div class="timeline-content">
             <h4>2025.04 <span>[支线]</span></h4>
             <p>开通基金账户，一根绿油油的小韭菜诞生！</p >
@@ -518,7 +519,6 @@
         <!-- 主线任务3 -->
         <div class="timeline-item main">
           <div class="timeline-dot"></div>
-          <div class="timeline-label">主线任务</div>
           <div class="timeline-content">
             <h4>2025.11 <span>[主线]</span></h4>
             <p>确定未来就业方向，针对性学习各项技能，计划跨专业实习。</p >
@@ -528,20 +528,18 @@
         <!-- 支线任务3 -->
         <div class="timeline-item side">
           <div class="timeline-dot"></div>
-          <div class="timeline-label">支线任务</div>
           <div class="timeline-content">
-            <h4>2025.10 <span>[支线]</span></h4>
-            <p>成功获得新身份-网球教练 ovo 持续学习中</p >
+            <h4>2025.4 <span>[支线]</span></h4>
+            <p>滑雪成功入门，期待成为滑雪高手>_<</p >
           </div>
         </div>
 
         <!-- 支线任务4 -->
         <div class="timeline-item side">
           <div class="timeline-dot"></div>
-          <div class="timeline-label">支线任务</div>
           <div class="timeline-content">
-            <h4>2026.01 <span>[支线]</span></h4>
-            <p>滑雪成功入门，期待成为滑雪高手>_< </p >
+            <h4>2025.10 <span>[支线]</span></h4>
+            <p>成功获得新身份-网球教练 ovo 持续学习中。</p >
           </div>
         </div>
       </div>
