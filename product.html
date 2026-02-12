@@ -1,50 +1,27 @@
 <script>
 const AMAP_KEY = "4d5f4f4b2460756568ad57f3c6e3b03c";
-const statusText = document.getElementById('resultArea');
 
 async function decideWhereToEat() {
-  if (!statusText) return;
-
-  statusText.innerHTML = '<div class="loading-wrapper"><span class="loading"></span> 定位中...</div>';
-
   try {
-    const pos = await getLocation();
+    const pos = await new Promise((ok, no) => {
+      navigator.geolocation.getCurrentPosition(ok, no);
+    });
+
     const lng = pos.coords.longitude;
     const lat = pos.coords.latitude;
 
-    statusText.innerHTML = '<div class="loading-wrapper"><span class="loading"></span> 搜索附近餐厅...</div>';
-
-    const res = await fetch(`https://restapi.amap.com/v3/place/around?key=${AMAP_KEY}&location=${lng},${lat}&radius=1000&types=050000&offset=20&output=json`);
+    const res = await fetch(`https://restapi.amap.com/v3/place/around?key=${AMAP_KEY}&location=${lng},${lat}&radius=1000&types=050000&output=json`);
     const data = await res.json();
 
-    if (data.status !== "1" || !data.pois || data.pois.length === 0) {
-      statusText.innerHTML = '<p class="status-text" style="color:#ff4400;">未找到附近餐厅</p >';
-      return;
+    if (data.status == "1" && data.pois && data.pois.length > 0) {
+      const r = Math.floor(Math.random() * data.pois.length);
+      const shop = data.pois[r];
+      alert("推荐餐厅：\n" + shop.name + "\n地址：" + shop.address);
+    } else {
+      alert("未找到餐厅");
     }
-
-    const r = Math.floor(Math.random() * data.pois.length);
-    const shop = data.pois[r];
-
-    // 完全沿用你原来的样式类名，不破坏布局
-    statusText.innerHTML = `
-      <div class="restaurant-card">
-        <h3>${shop.name}</h3>
-        <p>📍 ${shop.address}</p >
-        <p>📞 ${shop.tel || '暂无电话'}</p >
-      </div>
-    `;
   } catch (e) {
-    statusText.innerHTML = `<p class="status-text" style="color:#ff4400;">加载失败：${e.message}</p >`;
+    alert("出错：" + e.message);
   }
-}
-
-function getLocation() {
-  return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) {
-      reject(new Error("浏览器不支持定位"));
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
 }
 </script>
