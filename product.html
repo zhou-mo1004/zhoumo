@@ -196,7 +196,7 @@ function getLocation() {
 async function loadNearbyRestaurants() {
   try {
     // 使用高德地图的公开搜索接口
-    const response = await fetch(`https://restapi.amap.com/v3/place/around?key=47dda73cd99287d0ba26891d934d3340&location=${mylng},${mylat}&radius=3000&types=050000&offset=20&page=1&extensions=all`)
+    const response = await fetch(`https://restapi.amap.com/v3/place/around?key=	e77d3b35665497095c812fab7f3d10d9&location=${mylng},${mylat}&radius=3000&types=050000&offset=20&page=1&extensions=all`)
     const data = await response.json()
     if (data.status === '1') {
       points = data.pois
@@ -268,3 +268,4 @@ reroll.addEventListener('click', () => go.click())
 </script>
 </body>
 </html>
+
