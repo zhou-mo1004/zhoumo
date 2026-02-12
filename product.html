@@ -1,27 +1,7 @@
 <script>
 const AMAP_KEY = "4d5f4f4b2460756568ad57f3c6e3b03c";
 
-async function decideWhereToEat() {
-  try {
-    const pos = await new Promise((ok, no) => {
-      navigator.geolocation.getCurrentPosition(ok, no);
-    });
-
-    const lng = pos.coords.longitude;
-    const lat = pos.coords.latitude;
-
-    const res = await fetch(`https://restapi.amap.com/v3/place/around?key=${AMAP_KEY}&location=${lng},${lat}&radius=1000&types=050000&output=json`);
-    const data = await res.json();
-
-    if (data.status == "1" && data.pois && data.pois.length > 0) {
-      const r = Math.floor(Math.random() * data.pois.length);
-      const shop = data.pois[r];
-      alert("推荐餐厅：\n" + shop.name + "\n地址：" + shop.address);
-    } else {
-      alert("未找到餐厅");
-    }
-  } catch (e) {
-    alert("出错：" + e.message);
-  }
+function decideWhereToEat() {
+  alert("功能已启动，正在获取位置…");
 }
 </script>
