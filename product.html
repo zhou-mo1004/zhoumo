@@ -1,89 +1,50 @@
 <script>
-    // 全局变量
-    let points = []; // 存储餐厅数据
-    const statusText = document.getElementById('resultArea');
-    // 填入你的高德Key
-    const AMAP_KEY = 'e77d3b35665497095c812fab7f3d10d9';
+const AMAP_KEY = "4d5f4f4b2460756568ad57f3c6e3b03c";
+const statusText = document.getElementById('resultArea');
 
-    /**
-     * 核心主函数
-     */
-    async function decideWhereToEat() {
-        // 1. 显示加载中
-        statusText.innerHTML = '<div class="loading-wrapper"><span class="loading"></span> 定位中...</div>';
-        
-        try {
-            // 2. 获取用户位置
-            const position = await getLocation();
-            const { latitude, longitude } = position.coords;
-            statusText.innerHTML = '<div class="loading-wrapper"><span class="loading"></span> 搜索附近餐厅...</div>';
+async function decideWhereToEat() {
+  if (!statusText) return;
 
-            // 3. 加载高德地图餐厅数据
-            await loadNearbyRestaurants(longitude, latitude);
+  statusText.innerHTML = '<div class="loading-wrapper"><span class="loading"></span> 定位中...</div>';
 
-            // 4. 随机选择并展示
-            if (points.length > 0) {
-                const randomIndex = Math.floor(Math.random() * points.length);
-                showRestaurant(points[randomIndex]);
-            } else {
-                throw new Error('未找到餐厅数据');
-            }
+  try {
+    const pos = await getLocation();
+    const lng = pos.coords.longitude;
+    const lat = pos.coords.latitude;
 
-        } catch (error) {
-            console.error('错误:', error);
-            // 任何环节失败，直接显示模拟数据
-            statusText.innerHTML = '<p class="status-text" style="color: #ff4400;">获取失败，使用模拟数据</p >';
-            makeFakeRestaurants();
-            const randomIndex = Math.floor(Math.random() * points.length);
-            showRestaurant(points[randomIndex]);
-        }
+    statusText.innerHTML = '<div class="loading-wrapper"><span class="loading"></span> 搜索附近餐厅...</div>';
+
+    const res = await fetch(`https://restapi.amap.com/v3/place/around?key=${AMAP_KEY}&location=${lng},${lat}&radius=1000&types=050000&offset=20&output=json`);
+    const data = await res.json();
+
+    if (data.status !== "1" || !data.pois || data.pois.length === 0) {
+      statusText.innerHTML = '<p class="status-text" style="color:#ff4400;">未找到附近餐厅</p >';
+      return;
     }
 
-    /**
-     * 获取用户地理位置
-     */
-    function getLocation() {
-        return new Promise((resolve, reject) => {
-            if (!navigator.geolocation) {
-                reject(new Error('您的浏览器不支持定位'));
-                return;
-            }
-            navigator.geolocation.getCurrentPosition(resolve, (err) => {
-                reject(new Error('用户拒绝定位或定位失败'));
-            });
-        });
+    const r = Math.floor(Math.random() * data.pois.length);
+    const shop = data.pois[r];
+
+    // 完全沿用你原来的样式类名，不破坏布局
+    statusText.innerHTML = `
+      <div class="restaurant-card">
+        <h3>${shop.name}</h3>
+        <p>📍 ${shop.address}</p >
+        <p>📞 ${shop.tel || '暂无电话'}</p >
+      </div>
+    `;
+  } catch (e) {
+    statusText.innerHTML = `<p class="status-text" style="color:#ff4400;">加载失败：${e.message}</p >`;
+  }
+}
+
+function getLocation() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error("浏览器不支持定位"));
+      return;
     }
-
-    /**
-     * 加载高德地图附近餐厅 (仅保留高德，彻底删除百度)
-     */
-    async function loadNearbyRestaurants(lng, lat) {
-        points = []; // 清空旧数据
-        const url = `https://restapi.amap.com/v3/place/around?key=${AMAP_KEY}&location=${lng},${lat}&radius=3000&types=050000&offset=20&output=JSON`;
-        
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.status === '1' && data.pois && data.pois.length > 0) {
-            points = data.pois; // 成功获取高德数据
-        } else {
-            throw new Error('高德地图返回空数据或Key错误');
-        }
-    }
-
-
-
-    /**
-     * 展示餐厅信息
-     */
-    function showRestaurant(restaurant) {
-        const card = `
-            <div class="restaurant-card">
-                <h3>${restaurant.name || '未知餐厅'}</h3>
-                <p>📍 ${restaurant.address || '地址未知'}</p >
-                <p>📞 ${restaurant.tel || '电话未知'}</p >
-            </div>
-        `;
-        statusText.innerHTML = card;
-    }
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
 </script>
