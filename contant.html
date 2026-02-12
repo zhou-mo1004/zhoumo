@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我 - 我的个人网站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    body {
+      background: #fef9f3;
+      color: #333;
+      scroll-behavior: smooth; /* 平滑滚动 */
+    }
+
+    /* 导航栏样式（和你网站保持一致） */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #000;
+      z-index: 999;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 6px 12px;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .nav-links a.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      border-color: #000;
+      border-radius: 4px;
+    }
+
+    /* 页面内容 */
+    .container {
+      max-width: 1200px;
+      margin: 80px auto 0;
+      padding: 0 20px;
+    }
+
+    /* 联系我区块 */
+    #contact-section {
+      padding: 60px 0;
+      margin-top: 40px;
+      border-top: 2px solid #000;
+    }
+
+    .contact-card {
+      background: #fff;
+      border: 2px solid #000;
+      padding: 24px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 6px 6px 0 #000;
+    }
+
+    .contact-card h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 8px;
+    }
+
+    .contact-item {
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .contact-item a {
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+    }
+
+    .contact-item a:hover {
+      background: #ffd100;
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">我的个人网站</div>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="about.html">关于我</a>
+        <a herf="projects.html">项目</a>
+        <a href="product.html">产品</a>
+        <a href="contant.html"
+          class="active">联系我</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- 页面其他内容（可以放你喜欢的内容） -->
+    <div style="padding: 40px 0; text-align: center;">
+      <h1>📞 联系我</h1>
+      <p>如果你有任何问题或合作意向，欢迎通过以下方式联系我</p >
+    </div>
+
+    <!-- 联系我区块（点击导航栏会滚动到这里） -->
+    <div id="contact-section">
+      <div class="contact-card">
+        <h2>联系方式</h2>
+        <div class="contact-item">
+          <strong>邮箱：</strong> 1574226943@qq.com
+        </div>
+        
+        <div class="contact-item">
+          <strong>个人网站：https://zhou-mo1004.github.io/zhoumo/</strong> 
+        </div>
+        <div class="contact-item">
+          电话：</strong> 19225295581
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
