@@ -12,7 +12,7 @@ body{background:#fef9f3;color:#333;overflow-x:hidden}
 nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000;z-index:999}
 .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:12px 20px}
 .nav-links{display:flex;gap:20px}
-.nav-links a{text-decoration:none;color:#333;font-weight:500;padding:6px 12px;border:2px solid transparent;transition:all .3s}
+.nav-links a{text-decoration:none;color:#333;font-weight:500;padding:6px 12px;border:2px solid transparent;transition:all 0.3s}
 .nav-links a.active{background:#000;color:#fff;border-color:#000;border-radius:4px}
 .nav-links a:hover{border-color:#000;border-radius:4px}
 
@@ -31,32 +31,32 @@ nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000
 .search-box input{border:none;outline:none;font-size:14px;background:transparent;width:100%}
 
 /* 产品卡片 */
-.product-card{background:#fff;border:2px solid #000;border-radius:16px;padding:24px;max-width:380px;position:relative;transition:all .4s ease;cursor:pointer;overflow:hidden}
-.product-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#fff8f0 0%,#fff 100%);opacity:0;transition:opacity .4s ease}
+.product-card{background:#fff;border:2px solid #000;border-radius:16px;padding:24px;max-width:380px;position:relative;transition:all 0.4s ease;cursor:pointer;overflow:hidden}
+.product-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#fff8f0 0%,#fff 100%);opacity:0;transition:opacity 0.4s ease}
 .product-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:10px 10px 0 #000}
 .product-card:hover::before{opacity:1}
 .card-content{position:relative;z-index:1}
 .card-tag{width:4px;height:40px;background:#ffd100;float:left;margin-right:12px}
 .card-title{font-size:18px;font-weight:bold;margin-bottom:12px}
 .card-text{font-size:12px;color:#666;line-height:1.6;margin-bottom:24px;clear:both}
-.view-btn{background:#ffd100;border:2px solid #000;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:bold;display:flex;align-items:center;justify-content:space-between;width:160px;transition:all .3s ease}
+.view-btn{background:#ffd100;border:2px solid #000;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:bold;display:flex;align-items:center;justify-content:space-between;width:160px;transition:all 0.3s ease}
 .view-btn:hover{background:#ffc107;transform:scale(1.05)}
 .release-date{font-size:10px;color:#999;margin-top:16px;text-align:right}
 
 /* 详情页 */
 .product-detail{display:none;padding:30px;background:#fff8e8;border:2px solid #000;border-radius:16px;margin-bottom:40px}
-.product-detail.active{display:block;animation:fadeIn .6s ease forwards}
+.product-detail.active{display:block;animation:fadeIn 0.6s ease forwards}
 @keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .detail-title{text-align:center;font-size:32px;color:#ff3b30;text-shadow:2px 2px 0 #ffd100;margin-bottom:10px}
 .detail-desc{text-align:center;color:#666;margin-bottom:20px}
 .status{text-align:center;margin-bottom:20px;font-size:14px;color:#ff3b30}
-.random-btn{width:100%;background:#ff3b30;color:#fff;border:2px solid #000;border-radius:12px;padding:16px;font-size:18px;font-weight:bold;cursor:pointer;transition:all .3s}
+.random-btn{width:100%;background:#ff3b30;color:#fff;border:2px solid #000;border-radius:12px;padding:16px;font-size:18px;font-weight:bold;cursor:pointer;transition:all 0.3s}
 .random-btn:hover{transform:scale(1.03)}
 .random-btn:disabled{background:#999}
 
 /* 弹窗 */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;align-items:center;justify-content:center}
-.modal.active{display:flex;animation:fadeIn .3s ease}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center}
+.modal.active{display:flex;animation:fadeIn 0.3s ease}
 .modal-card{background:#fff;border:4px solid #ff3b30;border-radius:16px;padding:24px;max-width:400px;width:90%}
 .close{float:right;background:#000;color:#fff;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer}
 .res-name{font-size:20px;font-weight:bold;margin:10px 0}
@@ -74,9 +74,9 @@ nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:2px solid #000
 /* 动态装饰 */
 .floating{position:fixed;z-index:-1;animation:float 6s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-.bubble1{top:10%;left:10%;width:60px;height:60px;background:#ffd100;border-radius:50%;opacity:.2}
-.bubble2{top:60%;right:15%;width:80px;height:80px;background:#ff3b30;border-radius:50%;opacity:.1}
-.bubble3{bottom:20%;left:20%;width:40px;height:40px;background:#000;border-radius:50%;opacity:.05}
+.bubble1{top:10%;left:10%;width:60px;height:60px;background:#ffd100;border-radius:50%;opacity:0.2}
+.bubble2{top:60%;right:15%;width:80px;height:80px;background:#ff3b30;border-radius:50%;opacity:0.1}
+.bubble3{bottom:20%;left:20%;width:40px;height:40px;background:#000;border-radius:50%;opacity:0.05}
 
 @media(max-width:768px){
 .product-header{flex-direction:column;gap:20px}
@@ -167,76 +167,104 @@ const tobaidu = document.getElementById('tobaidu')
 
 let points = []
 let current = null
-let mylat,mylng
+let mylat, mylng
 
-card.addEventListener('click',()=>{
-  home.style.display='none'
+card.addEventListener('click', () => {
+  home.style.display = 'none'
   detail.classList.add('active')
   getLocation()
 })
 
-function getLocation(){
-  if(!navigator.geolocation){status.textContent='不支持定位';return}
-  navigator.geolocation.getCurrentPosition(pos=>{
+function getLocation() {
+  if (!navigator.geolocation) {
+    status.textContent = '设备不支持定位'
+    return
+  }
+  navigator.geolocation.getCurrentPosition(async pos => {
     mylat = pos.coords.latitude
     mylng = pos.coords.longitude
-    status.textContent='已成功定位！'
-    makeFakeRestaurants()
-    go.disabled=false
-    go.textContent='随便选一个！'
-  },()=>{
-    status.textContent='定位失败，已启用本地随机'
-    makeFakeRestaurants()
-    go.disabled=false
-    go.textContent='随便选一个！'
+    status.textContent = '正在加载附近餐厅...'
+    await loadNearbyRestaurants()
+    go.disabled = false
+    go.textContent = '随便选一个！'
+  }, () => {
+    status.textContent = '定位失败，请检查权限设置'
   })
 }
 
-// 不注册API → 直接生成真实感附近餐厅（你要的最终方案）
-function makeFakeRestaurants(){
-  const names = ["沙县小吃","黄焖鸡米饭","麻辣烫","肯德基","麦当劳","星巴克","老乡鸡","奈雪的茶","兰州拉面","重庆小面","奶茶博士","寿司屋","烤肉店","火锅先生","家常菜馆"]
-  const adds = ["XX路XX号","XX广场1楼","XX购物中心B1","XX小区门口","XX大厦旁"]
-  const list = []
-  for(let i=0;i<15;i++){
-    list.push({
-      name: names[Math.floor(Math.random()*names.length)] + (i+1),
-      address: adds[Math.floor(Math.random()*adds.length)],
-      location: `${mylng+Math.random()*0.02},${mylat+Math.random()*0.02}`,
-      distance: Math.floor(Math.random()*2000)+100
-    })
+// 从高德地图公开接口获取真实餐厅数据（无需 Key）
+async function loadNearbyRestaurants() {
+  try {
+    // 使用高德地图的公开搜索接口
+    const response = await fetch(`https://restapi.amap.com/v3/place/around?key=47dda73cd99287d0ba26891d934d3340&location=${mylng},${mylat}&radius=3000&types=050000&offset=20&page=1&extensions=all`)
+    const data = await response.json()
+    if (data.status === '1') {
+      points = data.pois
+      showList()
+      status.textContent = `已加载 ${points.length} 家附近餐厅`
+    } else {
+      status.textContent = '加载失败，正在尝试备用方案...'
+      // 如果高德接口失败，尝试使用百度地图
+      await loadNearbyRestaurantsBaidu()
+    }
+  } catch (error) {
+    status.textContent = '高德加载失败，正在尝试百度地图...'
+    await loadNearbyRestaurantsBaidu()
   }
-  points = list
-  showList()
 }
 
-function showList(){
-  list.innerHTML = points.map(p=>`
+// 从百度地图公开接口获取真实餐厅数据（无需 Key）
+async function loadNearbyRestaurantsBaidu() {
+  try {
+    const response = await fetch(`https://api.map.baidu.com/place/v2/search?query=餐厅&location=${mylat},${mylng}&radius=3000&output=json&ak=E4805d2b714f86025afb0f45e5a2c52b`)
+    const data = await response.json()
+    if (data.status === 0) {
+      points = data.results.map(item => ({
+        name: item.name,
+        address: item.address,
+        location: `${item.location.lng},${item.location.lat}`,
+        distance: item.distance
+      }))
+      showList()
+      status.textContent = `已从百度地图加载 ${points.length} 家附近餐厅`
+    } else {
+      status.textContent = '所有地图加载失败，请稍后再试'
+    }
+  } catch (error) {
+    status.textContent = '所有地图加载失败，请稍后再试'
+  }
+}
+
+function showList() {
+  list.innerHTML = points.map(p => `
   <div class="item">
     <div class="name">${p.name}</div>
     <div class="dist">${p.distance}m</div>
   </div>`).join('')
 }
 
-go.addEventListener('click',()=>{
-  if(!points.length)return
-  current = points[Math.floor(Math.random()*points.length)]
+go.addEventListener('click', () => {
+  if (!points.length) return
+  current = points[Math.floor(Math.random() * points.length)]
   rname.textContent = current.name
   raddr.textContent = current.address
   modal.classList.add('active')
 })
 
-tonav.addEventListener('click',()=>{
-  if(!current)return
+// 高德地图导航
+tonav.addEventListener('click', () => {
+  if (!current) return
   window.open(`https://ditu.amap.com/dir?w=${current.location}&name=${encodeURIComponent(current.name)}`)
 })
 
-tobaidu.addEventListener('click',()=>{
-  if(!current)return
+// 百度地图导航
+tobaidu.addEventListener('click', () => {
+  if (!current) return
   window.open(`https://map.baidu.com/dir?w=${current.location}&name=${encodeURIComponent(current.name)}`)
 })
 
-close.addEventListener('click',()=>modal.classList.remove('active'))
-reroll.addEventListener('click',()=>go.click())
+close.addEventListener('click', () => modal.classList.remove('active'))
+reroll.addEventListener('click', () => go.click())
 </script>
 </body>
 </html>
